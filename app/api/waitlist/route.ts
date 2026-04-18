@@ -2,7 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
 export async function POST(req: NextRequest) {
-  const { email } = await req.json();
+  let email: unknown;
+  try {
+    ({ email } = await req.json());
+  } catch {
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  }
 
   if (!email || typeof email !== "string" || !email.includes("@")) {
     return NextResponse.json({ error: "Invalid email" }, { status: 400 });
@@ -16,7 +21,7 @@ export async function POST(req: NextRequest) {
   }
 
   const resend = new Resend(apiKey);
-  const { error } = await resend.contacts.segments.add({ email, segmentId });
+  const { error } = await resend.contacts.create({ audienceId: segmentId, email });
 
   if (error) {
     console.error("Resend error", error);
