@@ -17,6 +17,7 @@ export default function Home() {
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-ink-soft">
             <a href="#teachers" className="hover:text-forest transition-colors">For Teachers</a>
             <a href="#hackathon" className="hover:text-forest transition-colors">For Sponsors</a>
+            <a href="/demo" target="_blank" className="hover:text-forest transition-colors">Demo</a>
           </div>
           <a
             href="#waitlist"

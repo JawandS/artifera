@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
 
 export async function POST(req: NextRequest) {
   const { email } = await req.json();
@@ -7,34 +8,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid email" }, { status: 400 });
   }
 
-  const segmentKey = process.env.RESEND_SEGMENT;
+  const apiKey = process.env.RESEND_API_KEY;
+  const segmentId = process.env.RESEND_SEGMENT;
 
-  if (segmentKey) {
-    const auth = Buffer.from(`${segmentKey}:`).toString("base64");
-    const headers = {
-      Authorization: `Basic ${auth}`,
-      "Content-Type": "application/json",
-    };
-    try {
-      await Promise.all([
-        fetch("https://api.segment.io/v1/identify", {
-          method: "POST",
-          headers,
-          body: JSON.stringify({ userId: email, traits: { email } }),
-        }),
-        fetch("https://api.segment.io/v1/track", {
-          method: "POST",
-          headers,
-          body: JSON.stringify({
-            userId: email,
-            event: "Waitlist Joined",
-            properties: { email },
-          }),
-        }),
-      ]);
-    } catch (err) {
-      console.error("Segment error", err);
-    }
+  if (!apiKey || !segmentId) {
+    return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
+  }
+
+  const resend = new Resend(apiKey);
+  const { error } = await resend.contacts.segments.add({ email, segmentId });
+
+  if (error) {
+    console.error("Resend error", error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
   return NextResponse.json({ success: true });
