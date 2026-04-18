@@ -45,9 +45,11 @@ function TitleSlide() {
       <div className="h-1.5 bg-amber shrink-0" />
 
       {/* Main content */}
-      <div className="flex-1 flex">
+      <div className="flex-1 flex items-center justify-center px-20 py-14">
+        <div className="w-full max-w-5xl grid grid-cols-5 gap-14 items-center">
+
         {/* Left panel */}
-        <div className="flex-1 flex flex-col justify-center px-20 py-14 space-y-8">
+        <div className="col-span-3 space-y-8">
           <div>
             <p className="text-xs font-bold tracking-widest uppercase text-amber mb-6">
               ECM × WMGIC Challenge 2026 · Track 1
@@ -61,7 +63,7 @@ function TitleSlide() {
               </span>
             </h1>
           </div>
-          <p className="text-xl text-ink-soft leading-relaxed max-w-lg">
+          <p className="text-xl text-ink-soft leading-relaxed">
             Artifera is a teacher-verified library of AI-powered learning experiences — connecting the educators who build them with the classrooms that need them most.
           </p>
           <p className="text-sm font-bold uppercase tracking-widest text-amber">
@@ -70,7 +72,7 @@ function TitleSlide() {
         </div>
 
         {/* Right panel — decorative card */}
-        <div className="w-96 shrink-0 flex flex-col justify-center pr-20 py-20">
+        <div className="col-span-2 flex flex-col justify-center">
           <p className="text-xs font-bold uppercase tracking-widest text-amber mb-3">Sample Artifact</p>
           <div className="bg-white rounded-2xl shadow-lg border border-border p-6 relative">
             <div className="absolute -top-3 -right-3 bg-amber text-ink text-xs font-bold px-3 py-1 rounded-full shadow-sm">
@@ -91,6 +93,8 @@ function TitleSlide() {
             </div>
           </div>
         </div>
+
+        </div>{/* end grid */}
       </div>
     </div>
   )
