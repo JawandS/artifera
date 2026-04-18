@@ -374,7 +374,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
           <span className="font-display text-white text-lg font-bold">Artifera</span>
           <div className="flex items-center gap-6">
-            <p className="text-white/40">© 2026 Artifera · ECM × WMGIC AI Equity Challenge</p>
+            <p className="text-white/40">© 2026 Jawand Singh · <a href="https://jawand.dev/" className="text-white/60 hover:text-white">https://jawand.dev/</a> · ECM × WMGIC AI Equity Challenge</p>
             <PrivacyModal />
           </div>
         </div>
