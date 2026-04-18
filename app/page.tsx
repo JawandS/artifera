@@ -1,6 +1,9 @@
+import WaitlistForm from "./components/WaitlistForm";
+import PrivacyModal from "./components/PrivacyModal";
+
 export default function Home() {
   return (
-    <div className="min-h-screen font-sans bg-surface text-ink overscroll-none">
+    <div className="min-h-screen font-sans bg-surface text-ink">
 
       {/* ─── Amber top stripe ─── */}
       <div className="h-1 bg-amber" />
@@ -19,7 +22,7 @@ export default function Home() {
             href="#waitlist"
             className="bg-amber text-ink text-sm font-semibold px-4 py-2 rounded-full hover:bg-amber-dark transition-colors"
           >
-            Get Early Access
+            Join Waitlist
           </a>
         </div>
       </nav>
@@ -44,19 +47,8 @@ export default function Home() {
             <p className="animate-fade-up delay-2 text-sm font-bold uppercase tracking-widest text-amber mb-8">
               Build · Share · Earn
             </p>
-            <div className="animate-fade-up delay-3 flex flex-wrap gap-4">
-              <a
-                href="#upload"
-                className="bg-forest text-white font-semibold px-7 py-3.5 rounded-full hover:bg-forest-mid transition-colors text-base"
-              >
-                Upload an Artifact
-              </a>
-              <a
-                href="#browse"
-                className="border border-border text-ink-soft font-medium px-7 py-3.5 rounded-full hover:border-forest hover:text-forest transition-colors text-base"
-              >
-                Browse Lessons →
-              </a>
+            <div className="animate-fade-up delay-3 max-w-md">
+              <WaitlistForm />
             </div>
           </div>
 
@@ -332,29 +324,46 @@ export default function Home() {
       </section>
 
       {/* ─── Footer CTA ─── */}
-      <section id="waitlist" className="bg-forest text-white">
-        <div className="max-w-6xl mx-auto px-6 py-24 text-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-amber mb-4">Now Accepting Early Access</p>
-          <h2 className="font-display text-5xl md:text-6xl font-bold leading-tight mb-6">
-            Starting at William &amp; Mary.<br />
-            <span className="italic font-light">Built for everywhere.</span>
-          </h2>
-          <p className="text-xl text-white/70 max-w-xl mx-auto mb-10">
-            Join teachers, developers, and institutions building the world&apos;s first AI-powered learning library.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#"
-              className="bg-amber text-ink font-bold px-8 py-4 rounded-full text-base hover:bg-amber-light transition-colors"
-            >
-              Get Early Access →
-            </a>
-            <a
-              href="#"
-              className="border border-white/30 text-white font-medium px-8 py-4 rounded-full text-base hover:border-white/60 transition-colors"
-            >
-              Sponsor a Hackathon
-            </a>
+      <section id="waitlist" className="relative bg-forest text-white overflow-hidden">
+        {/* Dot grid texture */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+          aria-hidden="true"
+        />
+        {/* Large faint monogram */}
+        <div
+          className="absolute right-0 top-1/2 pointer-events-none select-none font-display font-bold text-white leading-none"
+          style={{ fontSize: "32rem", opacity: 0.03, transform: "translateY(-50%) translateX(25%)" }}
+          aria-hidden="true"
+        >
+          A
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-6 py-28 lg:py-36">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-0 items-center">
+
+            {/* Left: headline */}
+            <div className="lg:pr-20 lg:border-r lg:border-white/10">
+              <p className="text-xs font-bold uppercase tracking-widest text-amber mb-8">Join the Waitlist</p>
+              <h2 className="font-display text-[3.5rem] md:text-[4.5rem] lg:text-[5.25rem] font-bold leading-[0.93] tracking-tight">
+                Built for<br />
+                <span className="italic font-light text-amber">everyone.</span>
+              </h2>
+            </div>
+
+            {/* Right: form */}
+            <div className="lg:pl-20">
+              <p className="text-white/55 text-base leading-relaxed mb-10 max-w-sm">
+                Join teachers, developers, and institutions building the world&apos;s first AI-powered learning library.
+              </p>
+              <WaitlistForm variant="dark" />
+              <p className="text-white/20 text-xs mt-5">No spam. Early access when we launch.</p>
+            </div>
+
           </div>
         </div>
       </section>
@@ -363,7 +372,10 @@ export default function Home() {
       <footer className="bg-ink border-t border-white/10">
         <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
           <span className="font-display text-white text-lg font-bold">Artifera</span>
-          <p className="text-white/40">© 2026 Artifera · ECM × WMGIC AI Equity Challenge</p>
+          <div className="flex items-center gap-6">
+            <p className="text-white/40">© 2026 Artifera · ECM × WMGIC AI Equity Challenge</p>
+            <PrivacyModal />
+          </div>
         </div>
       </footer>
 

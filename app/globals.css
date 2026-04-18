@@ -52,8 +52,6 @@
   to { opacity: 1; }
 }
 
-*,
-html,
 body {
   overscroll-behavior: none;
 }
