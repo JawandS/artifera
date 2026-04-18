@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div className="min-h-screen font-sans bg-surface text-ink">
+    <div className="min-h-screen font-sans bg-surface text-ink overscroll-none">
 
       {/* ─── Amber top stripe ─── */}
       <div className="h-1 bg-amber" />
@@ -13,8 +13,7 @@ export default function Home() {
           </a>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-ink-soft">
             <a href="#teachers" className="hover:text-forest transition-colors">For Teachers</a>
-            <a href="#sponsors" className="hover:text-forest transition-colors">For Sponsors</a>
-            <a href="#hackathon" className="hover:text-forest transition-colors">Hackathons</a>
+            <a href="#hackathon" className="hover:text-forest transition-colors">For Sponsors</a>
           </div>
           <a
             href="#waitlist"
@@ -31,20 +30,19 @@ export default function Home() {
 
           {/* Left: headline + CTAs */}
           <div className="lg:col-span-3">
-            <p className="animate-fade-up text-xs font-bold uppercase tracking-widest text-forest-light mb-6">
-              A global marketplace for AI-powered learning
-            </p>
             <h1 className="animate-fade-up delay-1 font-display text-5xl md:text-[4.25rem] font-bold leading-[1.04] tracking-tight text-ink mb-8">
               Great teaching<br />
               shouldn&apos;t stay<br />
               <span className="relative inline-block">
-                in one room.
+                in one place.
                 <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-amber rounded-full" />
               </span>
             </h1>
             <p className="animate-fade-up delay-2 text-xl text-ink-soft leading-relaxed mb-10 max-w-lg">
-              The first teacher-verified marketplace for AI-powered learning experiences.
-              Build it. Share it. Get rewarded.
+              The first educator-verified library and social network focused on AI-powered teaching materials.
+            </p>
+            <p className="animate-fade-up delay-2 text-sm font-bold uppercase tracking-widest text-amber mb-8">
+              Build · Share · Earn
             </p>
             <div className="animate-fade-up delay-3 flex flex-wrap gap-4">
               <a
@@ -99,9 +97,8 @@ export default function Home() {
       <div className="border-y border-border bg-surface-alt">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted font-medium">
-            <span>🎓 Piloting at William &amp; Mary</span>
             <span className="text-border select-none">·</span>
-            <span>ECM × WMGIC International Challenge 2026</span>
+            <span>ECM × WMGIC AI Equity Challenge 2026</span>
             <span className="text-border select-none">·</span>
             <span>Track 1: AI&apos;s Future in Higher Education</span>
           </div>
@@ -121,17 +118,17 @@ export default function Home() {
             {
               num: "01",
               title: "No Discovery Layer",
-              body: "No trusted, curated place to find classroom-tested AI materials. The best lessons live in individual Google Drives.",
+              body: "The first library with an integrated social network to find materials you can trust.",
             },
             {
               num: "02",
-              title: "No Incentive to Share",
-              body: "Skilled educators have no mechanism or motivation to publish what they've built. Time is scarce. Recognition is zero.",
+              title: "Barriers to Entry",
+              body: "Artifera builds a trust community of teachers that can help each other.",
             },
             {
               num: "03",
               title: "The Equity Gap",
-              body: "AI-enhanced education disproportionately benefits well-resourced schools. What exists rarely reaches the classrooms that need it most.",
+              body: "AI-enhanced education is rarely designed for classrooms that need it the most.",
             },
           ].map((card) => (
             <div
@@ -158,18 +155,15 @@ export default function Home() {
                 What is<br />an artifact?
               </h2>
               <p className="text-lg text-white/80 leading-relaxed mb-6">
-                An artifact is anything a teacher can use directly in class — self-contained, ready to deploy, and classroom-verified.
-              </p>
-              <p className="text-white/60 leading-relaxed">
-                Teachers are the single greatest lever in student outcomes. Artifacts are how we scale what the best of them build.
+                An artifact is anything a teacher can use directly in class or helps them learn more about AI-powered education.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
                 { icon: "📓", label: "NotebookLM Notebook", desc: "Curated prompts + sources" },
                 { icon: "📋", label: "Lesson Plan + Rubric", desc: "With worked examples" },
-                { icon: "⚙️", label: "Interactive Tool", desc: "Vibe-coded, drop-in ready" },
-                { icon: "🔗", label: "Curated Link", desc: "Verified classroom results" },
+                { icon: "⚙️", label: "3rd Party Tool", desc: "Existing verified solutions" },
+                { icon: "📰", label: "News", desc: "The latest in education news" },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -201,8 +195,8 @@ export default function Home() {
             <div className="space-y-6">
               {[
                 "Create a verified educator account",
-                "Upload your artifact with subject, grade, and description",
-                "Earn performance rewards based on engagement and verified usage",
+                "Upload your artifact with subject, level, and description",
+                "Earn performance rewards based on your impact",
               ].map((text, i) => (
                 <div key={i} className="flex gap-4 items-start">
                   <span className="flex-shrink-0 w-7 h-7 rounded-full bg-forest text-white text-xs font-bold flex items-center justify-center mt-0.5">
@@ -219,9 +213,9 @@ export default function Home() {
             </div>
             <div className="space-y-6">
               {[
-                "Browse and filter by subject, grade, tool type, or rating",
-                "Use an artifact in class with your students",
-                "Submit proof of usage — get entered into the classroom grant drawing",
+                "Browse and filter by subject, level, tool type, or rating",
+                "Use an artifact in class with your students for free",
+                "Submit reviews to enter a classroom grant drawing",
               ].map((text, i) => (
                 <div key={i} className="flex gap-4 items-start">
                   <span className="flex-shrink-0 w-7 h-7 rounded-full bg-amber text-ink text-xs font-bold flex items-center justify-center mt-0.5">
@@ -241,7 +235,7 @@ export default function Home() {
           <div className="mb-14">
             <p className="text-xs font-bold uppercase tracking-widest text-amber mb-3">The Reward System</p>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-ink leading-tight">
-              Recognition that reaches<br />the whole school.
+              Recognition that reaches<br />the right people.
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -249,7 +243,7 @@ export default function Home() {
               {
                 path: "Top artifact",
                 reward: "Performance Grant",
-                who: "Teacher + school/district",
+                who: "Teacher + School",
                 icon: "🏆",
                 highlight: false,
               },
@@ -263,7 +257,7 @@ export default function Home() {
               {
                 path: "Random usage selection",
                 reward: "Classroom Grant",
-                who: "School/district",
+                who: "School",
                 icon: "🎲",
                 highlight: true,
               },
@@ -288,7 +282,7 @@ export default function Home() {
                 </p>
                 {r.highlight && (
                   <p className="mt-4 text-sm text-white/60 leading-relaxed">
-                    The random draw is intentional. Popularity-only rewards advantage well-resourced schools. The draw gives any verified teacher anywhere in the world a real shot.
+                    Support places making an effort to modernize their education.
                   </p>
                 )}
               </div>
@@ -303,21 +297,17 @@ export default function Home() {
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-amber mb-4">The Hackathon Layer</p>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-ink leading-tight mb-6">
-              Where sponsors<br />meet educators.
+              Where companies<br />meet educators.
             </h2>
             <p className="text-lg text-ink-soft leading-relaxed mb-4">
-              Artifera hosts sponsored hackathons where teachers and developers compete to build artifacts around a specific challenge or tool.
-            </p>
-            <p className="text-muted leading-relaxed">
-              Teachers get prize money and recognition. Sponsors get qualified educators building real use cases with their tools. Hackathon artifacts become permanent marketplace entries.
+              Artifera hosts sponsored hackathons where teachers compete to build artifacts around a specific challenge or tool.
             </p>
           </div>
           <div className="space-y-4">
             {[
-              { role: "Teachers", get: "Prize money + recognition + marketplace visibility", icon: "👩‍🏫" },
-              { role: "Developers", get: "Build in a context that actually matters", icon: "💻" },
+              { role: "Teachers", get: "Prize money + recognition + library visibility", icon: "👩‍🏫" },
               { role: "Sponsors", get: "Qualified educators validating your tools at scale", icon: "🏢" },
-              { role: "Platform", get: "High-quality content pipeline for the marketplace", icon: "🌐" },
+              { role: "Platform", get: "High-quality content pipeline", icon: "🌐" },
             ].map((item) => (
               <div key={item.role} className="flex items-start gap-4 p-5 rounded-xl bg-white border border-border hover:border-forest transition-colors">
                 <span className="text-2xl">{item.icon}</span>
@@ -340,7 +330,7 @@ export default function Home() {
             <span className="italic font-light">Built for everywhere.</span>
           </h2>
           <p className="text-xl text-white/70 max-w-xl mx-auto mb-10">
-            Join teachers, developers, and institutions building the world&apos;s first AI-powered learning marketplace.
+            Join teachers, developers, and institutions building the world&apos;s first AI-powered learning library.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -363,7 +353,7 @@ export default function Home() {
       <footer className="bg-ink border-t border-white/10">
         <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
           <span className="font-display text-white text-lg font-bold">Artifera</span>
-          <p className="text-white/40">© 2026 Artifera · ECM × WMGIC International Challenge</p>
+          <p className="text-white/40">© 2026 Artifera · ECM × WMGIC AI Equity Challenge</p>
         </div>
       </footer>
 

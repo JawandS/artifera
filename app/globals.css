@@ -52,6 +52,12 @@
   to { opacity: 1; }
 }
 
+*,
+html,
+body {
+  overscroll-behavior: none;
+}
+
 body {
   background-color: var(--surface);
   color: var(--ink);

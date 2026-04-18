@@ -1,6 +1,6 @@
 # Artifera
 
-**A Global Marketplace for AI-Powered Learning**
+**A Global Library for AI-Powered Learning**
 Connecting the teachers who build great learning experiences with the classrooms that need them most.
 
 ## The Problem
@@ -14,7 +14,7 @@ Three compounding failures:
 
 ## The Solution
 
-Artifera is a teacher-verified marketplace for **artifacts** — self-contained, ready-to-deploy learning experiences backed by a reward system that incentivizes both creation and adoption.
+Artifera is a teacher-verified library of **artifacts** — self-contained, ready-to-deploy learning experiences backed by a reward system that incentivizes both creation and adoption.
 
 An artifact is anything a teacher can use directly in class: a NotebookLM notebook with curated prompts, a lesson plan with rubric and worked examples, a vibe-coded interactive tool, or a curated link with verified classroom results.
 
@@ -36,7 +36,7 @@ The randomized draw is intentional. Popularity-only rewards advantage already we
 
 ## The Hackathon Layer
 
-Artifera hosts sponsored hackathons where teachers and developers compete to build artifacts around a specific challenge or tool. Teachers get prize money and recognition. Sponsors (Google, Anthropic, OpenAI) get qualified educators building real use cases with their tools. The platform gets a high-quality content pipeline that feeds directly into the marketplace. Hackathon artifacts become permanent marketplace entries.
+Artifera hosts sponsored hackathons where teachers and developers compete to build artifacts around a specific challenge or tool. Teachers get prize money and recognition. Sponsors (Google, Anthropic, OpenAI) get qualified educators building real use cases with their tools. The platform gets a high-quality content pipeline that feeds directly into the library. Hackathon artifacts become permanent library entries.
 
 ## Funding Model
 

@@ -18,7 +18,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Artifera — The Global Marketplace for AI-Powered Learning",
+  title: "Artifera: Global Educator Library",
   description:
     "Connecting teachers who build great learning experiences with the classrooms that need them most.",
 };
