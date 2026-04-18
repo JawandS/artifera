@@ -52,11 +52,15 @@
   to { opacity: 1; }
 }
 
-body {
-  overscroll-behavior: none;
+html {
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior-y: none;
   background-color: var(--surface);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
