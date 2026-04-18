@@ -21,6 +21,13 @@ export const metadata: Metadata = {
   title: "Artifera: Global Educator Library",
   description:
     "Connecting teachers who build great learning experiences with the classrooms that need them most.",
+  openGraph: {
+    images: [{ url: "/favicon.ico" }],
+  },
+  twitter: {
+    card: "summary",
+    images: ["/favicon.ico"],
+  },
 };
 
 export default function RootLayout({
