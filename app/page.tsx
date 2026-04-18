@@ -18,6 +18,7 @@ export default function Home() {
             <a href="#teachers" className="hover:text-forest transition-colors">For Teachers</a>
             <a href="#hackathon" className="hover:text-forest transition-colors">For Sponsors</a>
             <a href="/demo" target="_blank" className="hover:text-forest transition-colors">Demo</a>
+            <a href="/slides" target="_blank" className="hover:text-forest transition-colors">Slides</a>
           </div>
           <a
             href="#waitlist"
