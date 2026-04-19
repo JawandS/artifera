@@ -232,7 +232,7 @@ function ProblemSlide({ step = 0 }: { step?: number }) {
 
 // ── Slide 3: Solution ─────────────────────────────────────────────────────────
 
-function SolutionSlide() {
+function SolutionSlide({ step = 0 }: { step?: number }) {
   const pillars = [
     {
       num: "01",
@@ -283,8 +283,16 @@ function SolutionSlide() {
         ))}
       </div>
 
-      {/* Contrast strip */}
-      <div className="flex items-center gap-3 w-full animate-fade-up delay-3">
+      {/* Contrast strip — revealed on click */}
+      <div
+        className="flex items-center gap-3 w-full"
+        style={{
+          opacity: step >= 1 ? 1 : 0,
+          transform: step >= 1 ? "translateY(0)" : "translateY(10px)",
+          transition: "opacity 0.45s ease, transform 0.45s ease",
+          pointerEvents: step >= 1 ? "auto" : "none",
+        }}
+      >
         <div className="flex-1 flex items-center gap-2.5 bg-surface-alt rounded-xl border border-border px-4 py-3">
           <span className="text-muted/35 font-bold text-sm shrink-0">✕</span>
           <p className="text-sm text-ink-soft">
@@ -432,7 +440,7 @@ function EarnSlide() {
 
 // ── Slide 7: How We're Funded ─────────────────────────────────────────────────
 
-function FundingSlide() {
+function FundingSlide({ step = 0 }: { step?: number }) {
   const streams = [
     {
       icon: "🤖",
@@ -514,23 +522,34 @@ function FundingSlide() {
         }}
       />
 
-      {/* RIGHT — typographic table */}
+      {/* RIGHT — typographic table, revealed on click */}
       <div className="flex-1 flex flex-col px-16 pt-14 pb-6">
-        <div className="flex-1 flex flex-col justify-center gap-8">
+        <div
+          className="flex-1 flex flex-col justify-center gap-8"
+          style={{
+            opacity: step >= 1 ? 1 : 0,
+            transform: step >= 1 ? "translateY(0)" : "translateY(10px)",
+            transition: "opacity 0.45s ease, transform 0.45s ease",
+            pointerEvents: step >= 1 ? "auto" : "none",
+          }}
+        >
           {sources.map((group, i) => (
-            <div key={group.category} className="animate-fade-up" style={{ animationDelay: `${0.35 + i * 0.14}s` }}>
+            <div key={group.category} style={{ transitionDelay: step >= 1 ? `${i * 0.08}s` : "0s" }}>
               <div className="flex items-center gap-3 mb-3">
                 <p className="text-[11px] font-bold uppercase tracking-widest text-forest shrink-0">{group.category}</p>
                 <div className="flex-1 h-px bg-border" />
               </div>
               <div>
                 {group.items.map((item) => (
-                  <div key={item.name} className="flex items-center justify-between py-2.5 border-b border-border/50 last:border-0">
-                    <p className="text-sm text-ink">{item.name}</p>
-                    {item.detail
-                      ? <p className="text-sm font-bold text-forest">{item.detail}</p>
-                      : <p className="text-sm text-border">—</p>
-                    }
+                  <div key={item.name} className="flex items-center py-2.5 border-b border-border/50 last:border-0">
+                    <p className="text-sm text-ink flex-1">{item.name}</p>
+                    <div className="w-36 flex justify-center">
+                      {item.detail
+                        ? <p className="text-sm font-bold text-forest">{item.detail}</p>
+                        : <p className="text-sm text-border">—</p>
+                      }
+                    </div>
+                    <div className="flex-1" />
                   </div>
                 ))}
               </div>
@@ -618,7 +637,7 @@ const SLIDES = [
 const TITLES = ["Team", "Problem", "Solution", "Artifact", "Demo", "Earning", "Funding", "Roadmap"]
 
 // Number of click-through sub-steps per slide (0 = no sub-steps)
-const SLIDE_STEPS = [0, 3, 0, 0, 0, 0, 0, 0]
+const SLIDE_STEPS = [0, 3, 1, 0, 0, 0, 1, 0]
 
 export default function SlidesPage() {
   const [current, setCurrent] = useState(0)
