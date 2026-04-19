@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
+import DemoPage from "@/app/demo/page"
 
 // ── Primitives ────────────────────────────────────────────────────────────────
 
@@ -360,8 +361,10 @@ function DemoSlide() {
         <SlideLabel>Live Demo</SlideLabel>
         <SlideHeading>The Artifact Library</SlideHeading>
       </div>
-      <div className="flex-1 min-h-0 rounded-2xl overflow-hidden border-2 border-forest/15 shadow-lg">
-        <iframe src="/demo" className="w-full h-full" title="Artifera Demo" />
+      <div className="flex-1 min-h-0 rounded-2xl overflow-hidden border border-border shadow-lg bg-white">
+        <div className="w-full h-full overflow-auto">
+          <DemoPage />
+        </div>
       </div>
     </div>
   )
@@ -374,17 +377,17 @@ function EarnSlide() {
     {
       icon: "🏆",
       label: "Performance grants",
-      desc: "Top artifacts by verified usage and peer reviews earn quarterly grants. Rewards professors who put in the work to share something good.",
+      desc: "Top artifacts by verified usage and peer reviews earn quarterly grants.",
     },
     {
       icon: "🎯",
       label: "Hackathon prizes",
-      desc: "Sponsors run challenge tracks on the platform. Professors build artifacts around a specific tool or theme and compete for prize money.",
+      desc: "Professors compete to buld articats around specific tools or problems.",
     },
     {
       icon: "🎲",
       label: "Random usage draw",
-      desc: "Every verified use of an artifact is one entry. A professor in Lagos has the same shot as one at MIT.",
+      desc: "Every verified use of an artifact is one entry: everyone has the same odds.",
       highlight: true,
     },
   ]
@@ -419,7 +422,7 @@ function EarnSlide() {
         <div className="bg-forest-pale rounded-xl border border-forest/10 px-5 py-4 space-y-1">
           <p className="text-xs font-bold uppercase tracking-widest text-forest">How we prevent gaming</p>
           <p className="text-sm text-ink-soft leading-relaxed">
-            Institution authentication + 2FA before any draw access. Suspicious submissions from an institution revoke access for the whole institution — giving universities a real reason to enforce integrity.
+            Institution authentication + 2FA before any draw access. Suspicious submissions from an institution revoke access for the whole institution.
           </p>
         </div>
       </div>
@@ -432,46 +435,110 @@ function EarnSlide() {
 function FundingSlide() {
   const streams = [
     {
-      icon: "🎓",
-      source: "Education nonprofit grants",
-      desc: "Pay into the classroom draw pool. Winnings go directly to the professor's institution.",
-    },
-    {
       icon: "🤖",
-      source: "AI company sponsorships",
-      desc: "Fund the hackathon prize tracks. Sponsors get professors building real use cases with their tools. We get a high-quality content pipeline.",
+      source: "AI company hackathons",
+      desc: "Sponsors fund prize tracks and get professors building real use cases with their tools.",
     },
     {
-      icon: "📊",
-      source: "Training data licensing (opt-in)",
-      desc: "Professors who choose to share artifact usage data with AI companies get a bonus on their performance grants. Opt-in only — better data, no backlash.",
+      icon: "🎓",
+      source: "Education philanthropy",
+      desc: "Grants fund the classroom draw pool. Winnings go directly to institutions.",
+    },
+    {
+      icon: "🏛️",
+      source: "Government programs",
+      desc: "Federal and EU program grants for AI in higher education.",
+    },
+  ]
+
+  const sources = [
+    {
+      category: "Hackathon sponsors",
+      items: [
+        { name: "OpenAI", detail: "$5,000 / track" },
+        { name: "Google DeepMind", detail: null },
+        { name: "Anthropic", detail: null },
+      ],
+    },
+    {
+      category: "Philanthropies",
+      items: [
+        { name: "Gates Foundation", detail: null },
+        { name: "Chan Zuckerberg Initiative", detail: null },
+        { name: "Accelerate (US)", detail: "Up to $250,000" },
+      ],
+    },
+    {
+      category: "Government",
+      items: [
+        { name: "EXIST — Germany", detail: "Up to €150k" },
+        { name: "US Dept. of Education", detail: "$50M AI pool" },
+        { name: "EU Digital Europe", detail: null },
+      ],
     },
   ]
 
   return (
-    <Shell>
-      <div className="w-full max-w-4xl space-y-8">
-        <div>
-          <SlideLabel>Funding Model</SlideLabel>
-          <SlideHeading>How We&apos;re Funded</SlideHeading>
+    <div className="w-full h-full flex bg-surface pb-14">
+      {/* LEFT — centered like slide 2 */}
+      <div className="flex flex-col items-center justify-center px-14 pt-14 pb-6 text-center" style={{ width: "46%" }}>
+        <div className="flex items-center gap-3 text-[11px] font-bold tracking-[0.25em] uppercase text-forest animate-fade-up">
+          <span className="w-10 h-px bg-forest" />
+          <span>Funding Model</span>
+          <span className="w-10 h-px bg-forest" />
         </div>
 
-        <div className="space-y-4">
+        <h2 className="font-display font-bold text-5xl text-ink leading-[0.95] tracking-[-0.02em] mt-7 animate-fade-up delay-1">
+          How we&apos;re<br />funded.
+        </h2>
+
+        <div className="mt-10 w-full text-left divide-y divide-border/70 animate-fade-up delay-2">
           {streams.map((s) => (
-            <div
-              key={s.source}
-              className="flex items-start gap-5 bg-white rounded-2xl border border-border px-6 py-5"
-            >
-              <span className="text-3xl shrink-0 mt-0.5">{s.icon}</span>
-              <div className="space-y-1">
-                <p className="font-semibold text-ink">{s.source}</p>
-                <p className="text-sm text-muted leading-relaxed">{s.desc}</p>
+            <div key={s.source} className="flex items-start gap-4 py-5 first:pt-0 last:pb-0">
+              <span className="text-lg shrink-0 mt-0.5">{s.icon}</span>
+              <div>
+                <p className="font-semibold text-ink text-sm">{s.source}</p>
+                <p className="text-xs text-muted leading-relaxed mt-0.5">{s.desc}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </Shell>
+
+      {/* Gradient spine */}
+      <div
+        className="w-px shrink-0 animate-grow-y delay-1"
+        style={{
+          background:
+            "linear-gradient(to bottom, var(--border) 0%, var(--forest) 32%, var(--forest) 68%, var(--border) 100%)",
+        }}
+      />
+
+      {/* RIGHT — typographic table */}
+      <div className="flex-1 flex flex-col px-16 pt-14 pb-6">
+        <div className="flex-1 flex flex-col justify-center gap-8">
+          {sources.map((group, i) => (
+            <div key={group.category} className="animate-fade-up" style={{ animationDelay: `${0.35 + i * 0.14}s` }}>
+              <div className="flex items-center gap-3 mb-3">
+                <p className="text-[11px] font-bold uppercase tracking-widest text-forest shrink-0">{group.category}</p>
+                <div className="flex-1 h-px bg-border" />
+              </div>
+              <div>
+                {group.items.map((item) => (
+                  <div key={item.name} className="flex items-center justify-between py-2.5 border-b border-border/50 last:border-0">
+                    <p className="text-sm text-ink">{item.name}</p>
+                    {item.detail
+                      ? <p className="text-sm font-bold text-forest">{item.detail}</p>
+                      : <p className="text-sm text-border">—</p>
+                    }
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -482,54 +549,56 @@ function RoadmapSlide() {
     {
       label: "Phase 1",
       name: "Seeding",
-      desc: "Internal hackathon at partner institutions to build the initial base of content and users. Universities advance their AI curriculum collaboratively.",
+      desc: "Internal hackathon at partner institutions to build the initial base of content and users.",
     },
     {
       label: "Phase 2",
       name: "Expand",
-      desc: "First external sponsor, first public hackathon, platform open to other universities. Boosted draw rounds drive early adoption.",
+      desc: "Partner with external sponsors for hackathons and publically release the platform.",
     },
     {
       label: "Phase 3",
       name: "Scale",
-      desc: "Partner with larger organizations — ministries of education. AI-powered recommendations surface the right artifact for your course without searching.",
+      desc: "Partner with larger organizations and integrate AI-powered recommendations.",
     },
   ]
 
   return (
-    <Shell>
-      <div className="w-full max-w-4xl space-y-10">
-        <div>
-          <SlideLabel>Execution</SlideLabel>
-          <SlideHeading>Roadmap</SlideHeading>
+    <div className="w-full h-full flex flex-col bg-surface px-20 pt-14 pb-14">
+      {/* Header */}
+      <div className="shrink-0 animate-fade-up">
+        <div className="flex items-center gap-3 text-[11px] font-bold tracking-[0.25em] uppercase text-amber mb-4">
+          <span className="w-8 h-px bg-amber" />
+          <span>Execution</span>
         </div>
-
-        <div className="grid grid-cols-3 gap-6">
-          {phases.map((phase, i) => (
-            <div key={phase.name} className="relative">
-              {i < phases.length - 1 && (
-                <div className="absolute top-6 left-full w-6 flex items-center justify-center z-10">
-                  <span className="text-muted text-lg">→</span>
-                </div>
-              )}
-              <Card className="space-y-4 h-full">
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-widest text-amber">{phase.label}</span>
-                  <p className="font-display font-bold text-ink text-2xl mt-0.5">{phase.name}</p>
-                </div>
-                <p className="text-sm text-muted leading-relaxed">{phase.desc}</p>
-              </Card>
-            </div>
-          ))}
-        </div>
-
-        <div className="bg-forest-pale rounded-xl border border-forest/10 px-5 py-4">
-          <p className="text-sm text-ink-soft">
-            Pilot starts at <span className="font-semibold text-forest">William & Mary</span> — low capital, validated model, direct alignment with the W&M Entrepreneurship Hub.
-          </p>
-        </div>
+        <h2 className="font-display font-bold text-5xl text-ink leading-[0.95] tracking-[-0.02em]">
+          How we get there.
+        </h2>
       </div>
-    </Shell>
+
+      {/* Phase rows — fill remaining height equally */}
+      <div className="flex-1 flex flex-col border-t border-border mt-8">
+        {phases.map((phase, i) => (
+          <div
+            key={phase.name}
+            className="flex-1 flex items-center gap-10 border-b border-border animate-fade-up"
+            style={{ animationDelay: `${0.2 + i * 0.13}s` }}
+          >
+            <span
+              className="font-display font-bold text-amber/20 leading-none shrink-0 w-24 text-right tabular-nums"
+              style={{ fontSize: "4.5rem" }}
+            >
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div className="w-px self-stretch bg-border/60 shrink-0 my-5" />
+            <p className="font-display font-bold text-2xl text-ink w-52 shrink-0 text-center">{phase.name}</p>
+            <div className="w-px self-stretch bg-border/60 shrink-0 my-5" />
+            <p className="text-base text-muted leading-relaxed flex-1 pl-4">{phase.desc}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
   )
 }
 
