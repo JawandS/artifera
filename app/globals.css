@@ -52,6 +52,11 @@
   to { opacity: 1; }
 }
 
+@keyframes growY {
+  from { transform: scaleY(0); opacity: 0; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+
 html {
   height: 100%;
   overflow: hidden;
@@ -73,6 +78,11 @@ body {
 
 .animate-fade-in {
   animation: fadeIn 0.5s ease both;
+}
+
+.animate-grow-y {
+  animation: growY 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: center;
 }
 
 .delay-1 { animation-delay: 0.08s; }

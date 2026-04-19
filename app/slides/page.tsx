@@ -36,65 +36,90 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
   )
 }
 
-// ── Slide 1: Title ────────────────────────────────────────────────────────────
+// ── Slide 1: Team ─────────────────────────────────────────────────────────────
 
-function TitleSlide() {
+function TeamSlide() {
+  const members = [
+    {
+      name: "Jawand Singh",
+      role: "B.S. Computer Science & Economics",
+      school: "William & Mary",
+      img: "/Jawand-Headshot.png",
+    },
+    { name: "Björn Dreier", role: "MSc Management", school: "JGU Mainz", img: "/Bjorn-Headshot.jpeg" },
+    { name: "Joshua Ladel", role: "MSc Management", school: "JGU Mainz", img: "/Josh-Headshot.jpeg" },
+  ]
+
   return (
-    <div className="w-full h-full flex flex-col bg-surface relative overflow-hidden">
-      {/* Amber top stripe */}
-      <div className="h-1.5 bg-amber shrink-0" />
-
-      {/* Main content */}
-      <div className="flex-1 flex items-center justify-center px-20 py-14">
-        <div className="w-full max-w-5xl grid grid-cols-5 gap-14 items-center">
-
-        {/* Left panel */}
-        <div className="col-span-3 space-y-8">
-          <div>
-            <p className="text-xs font-bold tracking-widest uppercase text-amber mb-6">
-              ECM × WMGIC Challenge 2026 · Track 1
-            </p>
-            <h1 className="font-display font-bold text-[5.5rem] leading-[1.02] tracking-tight text-ink">
-              Great teaching<br />
-              shouldn&apos;t stay<br />
-              <span className="relative inline-block">
-                in one place.
-                <span className="absolute -bottom-1 left-0 right-0 h-[4px] bg-amber rounded-full" />
-              </span>
-            </h1>
-          </div>
-          <p className="text-xl text-ink-soft leading-relaxed">
-            Artifera is a teacher-verified library of AI-powered learning experiences — connecting the educators who build them with the classrooms that need them most.
-          </p>
-          <p className="text-sm font-bold uppercase tracking-widest text-amber">
-            Build · Share · Earn
-          </p>
+    <div className="w-full h-full flex bg-surface pb-14">
+      {/* LEFT — Masthead */}
+      <div className="flex flex-col items-center px-16 pt-14 pb-6" style={{ width: "46%" }}>
+        {/* Event label */}
+        <div className="flex items-center justify-center gap-3 text-[11px] font-bold tracking-[0.25em] uppercase text-amber animate-fade-up">
+          <span className="w-10 h-px bg-amber" />
+          <span>ECM × WMGIC · Track 01</span>
+          <span className="w-10 h-px bg-amber" />
         </div>
 
-        {/* Right panel — decorative card */}
-        <div className="col-span-2 flex flex-col justify-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-amber mb-3">Sample Artifact</p>
-          <div className="bg-white rounded-2xl shadow-lg border border-border p-6 relative">
-            <div className="absolute -top-3 -right-3 bg-amber text-ink text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-              ✓ Top Rated
-            </div>
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              <span className="bg-forest-pale text-forest text-xs font-semibold px-2.5 py-1 rounded-full">Study Skills</span>
-              <span className="bg-surface-alt text-muted text-xs px-2.5 py-1 rounded-full">Undergraduate</span>
-            </div>
-            <h3 className="font-display text-xl font-bold text-ink mb-1">How to Study</h3>
-            <p className="text-xs text-muted-light mb-3">Bloomsbury Publishing</p>
-            <p className="text-sm text-muted mb-4">Curated NotebookLM with guided prompts for active recall, note-taking strategies, and exam prep.</p>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted">⭐ 4.9 · 43 uses</span>
-              <span className="bg-forest text-white text-xs font-semibold px-4 py-2 rounded-full">
-                Use in Class →
-              </span>
-            </div>
+        {/* Hero */}
+        <div className="flex-1 flex flex-col justify-center items-center text-center">
+          <h1 className="font-display font-bold text-[6.75rem] leading-[0.88] tracking-[-0.035em] text-ink animate-fade-up delay-1">
+            Artifera
+          </h1>
+          <p className="mt-6 font-display italic text-[1.65rem] text-ink-soft leading-[1.2] animate-fade-up delay-2">
+            A global library for<br />AI-powered learning.
+          </p>
+        </div>
+      </div>
+
+      {/* Gradient spine */}
+      <div
+        className="w-px shrink-0 animate-grow-y delay-1"
+        style={{
+          background:
+            "linear-gradient(to bottom, var(--border) 0%, var(--amber) 32%, var(--amber) 68%, var(--border) 100%)",
+        }}
+      />
+
+      {/* RIGHT — Team */}
+      <div className="flex-1 flex flex-col px-16 pt-14 pb-6">
+        <div className="flex-1 flex flex-col justify-center">
+          <div className="divide-y divide-border/70">
+            {members.map((m, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-6 py-7 first:pt-0 last:pb-0 animate-fade-up"
+                style={{ animationDelay: `${0.35 + i * 0.12}s` }}
+              >
+                {m.img ? (
+                  <div className="w-28 h-28 rounded-full overflow-hidden border border-border shrink-0 bg-surface-alt">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={m.img}
+                      alt={m.name}
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: "center 20%" }}
+                    />
+                  </div>
+                ) : (
+                  <div className="w-28 h-28 rounded-full bg-surface-alt border border-border flex items-center justify-center shrink-0">
+                    <span className="font-display text-3xl text-ink-soft">{m.name.charAt(0)}</span>
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <p className="font-display font-bold text-[1.6rem] text-ink leading-[1.1] tracking-[-0.01em]">
+                    {m.name}
+                  </p>
+                  <p className="text-sm text-muted mt-1.5">
+                    {m.role}
+                    <span className="mx-2 text-border">·</span>
+                    <span className="text-forest font-semibold">{m.school}</span>
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-
-        </div>{/* end grid */}
       </div>
     </div>
   )
@@ -106,42 +131,56 @@ function ProblemSlide() {
   const problems = [
     {
       num: "01",
-      title: "No Discovery Layer",
-      body: "No trusted, curated place to find classroom-tested AI materials. Great resources die in single classrooms.",
+      title: "No shared space.",
+      body: "Good AI-powered course materials exist, but they stay stuck in individual classrooms. There's no trusted place to find what's actually working.",
     },
     {
       num: "02",
-      title: "No Incentive to Share",
-      body: "Skilled educators have no mechanism or motivation to publish what they've built. Expertise stays locked up.",
+      title: "No reason to share.",
+      body: "Professors are stretched thin. Without real incentives — money or recognition — the effort of packaging and publishing their work just doesn't happen.",
     },
     {
       num: "03",
-      title: "The Equity Gap",
-      body: "AI-enhanced education disproportionately benefits well-resourced schools. Under-resourced classrooms are left behind.",
+      title: "The gap keeps growing.",
+      body: "Well-resourced universities move fast on AI. Everyone else falls further behind. The professors who could benefit most are the ones with the least support.",
     },
   ]
 
   return (
     <Shell>
-      <div className="w-full max-w-5xl space-y-10">
+      <div className="w-full max-w-5xl space-y-8">
         <div>
           <SlideLabel>The Problem</SlideLabel>
-          <SlideHeading>
-            Teachers are the greatest lever<br />in learning outcomes — yet…
-          </SlideHeading>
+          <SlideHeading>Built for professors —<br />especially the under-resourced.</SlideHeading>
         </div>
+
+        {/* Anchor stat */}
+        <div className="flex items-center gap-6 bg-amber/8 border border-amber/20 rounded-xl px-6 py-4">
+          <div className="text-center shrink-0">
+            <p className="font-display font-bold text-4xl text-amber-dark">47%</p>
+            <p className="text-xs text-muted mt-0.5">high-income countries</p>
+          </div>
+          <div className="h-10 w-px bg-amber/20 shrink-0" />
+          <div className="text-center shrink-0">
+            <p className="font-display font-bold text-4xl text-ink">8%</p>
+            <p className="text-xs text-muted mt-0.5">low-income countries</p>
+          </div>
+          <div className="h-10 w-px bg-amber/20 shrink-0" />
+          <p className="text-sm text-ink-soft leading-relaxed">
+            of academic institutions have implemented AI tools — a gap that keeps widening.{" "}
+            <span className="text-xs text-muted">(UNESCO-aligned review, ChemRxiv, 2025)</span>
+          </p>
+        </div>
+
         <div className="grid grid-cols-3 gap-6">
           {problems.map((p) => (
-            <Card key={p.num} className="space-y-4">
+            <Card key={p.num} className="space-y-3">
               <span className="font-display text-4xl font-bold text-amber/60">{p.num}</span>
               <h3 className="font-semibold text-lg text-ink">{p.title}</h3>
               <p className="text-sm text-muted leading-relaxed">{p.body}</p>
             </Card>
           ))}
         </div>
-        <p className="text-muted text-sm">
-          High-quality AI learning experiences exist in pockets — they never escape individual classrooms to reach the students who need them most.
-        </p>
       </div>
     </Shell>
   )
@@ -150,43 +189,100 @@ function ProblemSlide() {
 // ── Slide 3: Solution ─────────────────────────────────────────────────────────
 
 function SolutionSlide() {
-  const types = [
-    { icon: "📓", label: "NotebookLM notebook with curated sources and guided prompts" },
-    { icon: "📋", label: "Lesson plan with activity, rubric, and worked examples" },
-    { icon: "🛠️", label: "Vibe-coded interactive tool hosted externally" },
-    { icon: "🔗", label: "Curated link with verified classroom results" },
+  const pillars = [
+    {
+      icon: "📚",
+      label: "Library",
+      desc: "Real artifacts, organized by subject, course level, and tool — verified by the professors who built them.",
+    },
+    {
+      icon: "💬",
+      label: "Social",
+      desc: "Discussion under every artifact. Peers helping each other adapt things to their context.",
+    },
+    {
+      icon: "💰",
+      label: "Incentives",
+      desc: "Grants for top contributors, hackathon prizes from sponsors, and a randomized draw so anyone anywhere can earn.",
+    },
   ]
 
   return (
     <Shell>
-      <div className="w-full max-w-5xl space-y-9">
+      <div className="w-full max-w-5xl space-y-8">
         <div>
           <SlideLabel>The Solution</SlideLabel>
           <SlideHeading>
-            <span className="text-forest">Artifera</span>
+            A free, peer-run library<br />
+            <span className="text-forest">with a reward system.</span>
           </SlideHeading>
-          <p className="text-xl text-ink-soft mt-3 max-w-2xl leading-relaxed">
-            A <span className="text-ink font-semibold">teacher-verified library</span> of self-contained AI learning experiences — backed by a reward system that incentivizes both creation and adoption.
-          </p>
         </div>
-        <div>
-          <p className="text-xs font-bold text-muted uppercase tracking-widest mb-4">
-            An artifact can be…
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            {types.map((t, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-4 bg-forest-pale rounded-xl px-5 py-4 border border-forest/10"
-              >
-                <span className="text-2xl shrink-0">{t.icon}</span>
-                <span className="text-sm text-ink-soft leading-snug">{t.label}</span>
-              </div>
-            ))}
+
+        <div className="grid grid-cols-3 gap-6">
+          {pillars.map((p) => (
+            <Card key={p.label} className="space-y-4">
+              <span className="text-3xl">{p.icon}</span>
+              <h3 className="font-semibold text-ink text-lg">{p.label}</h3>
+              <p className="text-sm text-muted leading-relaxed">{p.desc}</p>
+            </Card>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-surface-alt rounded-xl border border-border px-5 py-4">
+            <p className="text-xs font-bold uppercase tracking-widest text-muted mb-2">Selling platforms (e.g. TPT)</p>
+            <p className="text-sm text-ink-soft">Paywalled. No real community. Not designed for AI-era teaching.</p>
+          </div>
+          <div className="bg-surface-alt rounded-xl border border-border px-5 py-4">
+            <p className="text-xs font-bold uppercase tracking-widest text-muted mb-2">Teacher networks</p>
+            <p className="text-sm text-ink-soft">Great conversation. Nothing you can actually run in class next week.</p>
           </div>
         </div>
+
+        <p className="text-sm font-semibold text-forest">Artifera has both.</p>
+      </div>
+    </Shell>
+  )
+}
+
+// ── Slide 4: What Is an Artifact? ─────────────────────────────────────────────
+
+function ArtifactSlide() {
+  const types = [
+    { icon: "📓", label: "Curated NotebookLMs", desc: "High-quality sources and guided prompts built around a specific topic." },
+    { icon: "📋", label: "Course modules", desc: "Activity, rubric, and worked examples already written." },
+    { icon: "🛠️", label: "3rd party tools", desc: "Verified by professors to be effective in a real course setting." },
+    { icon: "🔗", label: "Custom tools", desc: "Vibe-coded and hosted by Artifera, ready to deploy." },
+  ]
+
+  return (
+    <Shell>
+      <div className="w-full max-w-5xl space-y-8">
+        <div>
+          <SlideLabel>What Is an Artifact?</SlideLabel>
+          <SlideHeading>Something concrete.</SlideHeading>
+          <p className="text-lg text-ink-soft mt-3">
+            Not &quot;how to use AI in your classroom&quot; advice. An actual thing you can open on Monday and use.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          {types.map((t) => (
+            <div
+              key={t.label}
+              className="flex items-start gap-4 bg-forest-pale rounded-xl px-5 py-4 border border-forest/10"
+            >
+              <span className="text-2xl shrink-0 mt-0.5">{t.icon}</span>
+              <div>
+                <p className="font-semibold text-ink text-sm">{t.label}</p>
+                <p className="text-xs text-muted leading-relaxed mt-0.5">{t.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <div className="flex items-center gap-6 text-sm text-muted">
-          {["Teacher-created", "Classroom-verified", "Ready to deploy"].map((tag) => (
+          {["Tagged by subject & course level", "Peer-reviewed usage count", "Clear way to get started"].map((tag) => (
             <span key={tag} className="flex items-center gap-1.5">
               <span className="text-forest font-bold">✓</span>
               {tag}
@@ -198,109 +294,7 @@ function SolutionSlide() {
   )
 }
 
-// ── Slide 4: How It Works ─────────────────────────────────────────────────────
-
-function HowItWorksSlide() {
-  const upload = [
-    "Verify your teacher account via school district + 2FA",
-    "Upload an artifact with subject, grade, and description",
-    "Earn performance rewards from engagement, usage, and reviews",
-  ]
-  const use = [
-    "Browse and filter by subject, grade, tool type, or rating",
-    "Use the artifact in class",
-    "Submit proof of usage — photo, 2–3 sentences, and a rating",
-    "Every verified submission enters a randomized classroom grant drawing",
-  ]
-
-  return (
-    <Shell>
-      <div className="w-full max-w-5xl space-y-8">
-        <div>
-          <SlideLabel>How It Works</SlideLabel>
-          <SlideHeading>Two sides, one flywheel</SlideHeading>
-        </div>
-        <div className="grid grid-cols-2 gap-6">
-          {[
-            { dir: "↑", role: "For creators", steps: upload },
-            { dir: "↓", role: "For adopters", steps: use },
-          ].map(({ dir, role, steps }) => (
-            <Card key={role} className="space-y-5">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-forest flex items-center justify-center text-white font-bold text-sm shrink-0">
-                  {dir}
-                </div>
-                <h3 className="font-semibold text-ink text-lg">{role}</h3>
-              </div>
-              <div className="space-y-4">
-                {steps.map((step, i) => (
-                  <div key={i} className="flex gap-3">
-                    <span className="shrink-0 w-5 h-5 rounded-full bg-amber/15 text-amber-dark text-xs flex items-center justify-center font-bold mt-0.5">
-                      {i + 1}
-                    </span>
-                    <p className="text-sm text-muted leading-relaxed">{step}</p>
-                  </div>
-                ))}
-              </div>
-            </Card>
-          ))}
-        </div>
-      </div>
-    </Shell>
-  )
-}
-
-// ── Slide 5: Reward System ────────────────────────────────────────────────────
-
-function RewardSlide() {
-  const rows = [
-    { path: "Top-performing artifact", reward: "Performance grant", who: "Teacher + school/district", highlight: false },
-    { path: "Hackathon winner", reward: "Sponsor prize", who: "Teacher", highlight: false },
-    { path: "Random usage selection", reward: "Classroom grant", who: "School/district", highlight: true },
-  ]
-
-  return (
-    <Shell>
-      <div className="w-full max-w-5xl space-y-8">
-        <div>
-          <SlideLabel>The Reward System</SlideLabel>
-          <SlideHeading>Three ways to earn</SlideHeading>
-        </div>
-        <div className="bg-white rounded-2xl border border-border overflow-hidden">
-          <div className="grid grid-cols-3 px-6 py-3 bg-surface-alt text-xs font-bold uppercase tracking-widest text-muted">
-            <span>Path</span>
-            <span>Reward</span>
-            <span>Who benefits</span>
-          </div>
-          {rows.map((row, i) => (
-            <div
-              key={i}
-              className={`grid grid-cols-3 px-6 py-5 items-center border-t border-border ${
-                row.highlight ? "bg-amber/8" : ""
-              }`}
-            >
-              <span className={`text-sm font-medium ${row.highlight ? "text-ink" : "text-ink-soft"}`}>
-                {row.path}
-              </span>
-              <span className={`text-sm font-semibold ${row.highlight ? "text-amber-dark" : "text-muted"}`}>
-                {row.reward}
-              </span>
-              <span className="text-sm text-muted">{row.who}</span>
-            </div>
-          ))}
-        </div>
-        <div className="bg-amber/8 rounded-xl border border-amber/20 p-5 space-y-2">
-          <p className="text-sm font-semibold text-amber-dark">Why randomized?</p>
-          <p className="text-sm text-ink-soft leading-relaxed max-w-2xl">
-            Popularity-only rewards advantage already well-resourced schools. The random draw gives any verified teacher anywhere in the world a real shot at funding — regardless of follower count or institutional prestige.
-          </p>
-        </div>
-      </div>
-    </Shell>
-  )
-}
-
-// ── Slide 6: Demo ─────────────────────────────────────────────────────────────
+// ── Slide 5: Demo ─────────────────────────────────────────────────────────────
 
 function DemoSlide() {
   return (
@@ -316,123 +310,166 @@ function DemoSlide() {
   )
 }
 
-// ── Slide 7: Hackathon + Funding ──────────────────────────────────────────────
+// ── Slide 6: How Professors Earn ──────────────────────────────────────────────
 
-function HackathonSlide() {
-  const parties = [
-    { icon: "🎓", label: "Teachers", desc: "Prize money and recognition for building real classroom tools" },
-    { icon: "🏢", label: "Sponsors", desc: "Qualified educators engaging deeply with their AI products and building real use cases" },
-    { icon: "📚", label: "Platform", desc: "A high-quality content pipeline feeding directly into the library" },
-  ]
-  const funding = [
-    { source: "Education nonprofits", mechanism: "Grants → classroom draw pool" },
-    { source: "AI company sponsors", mechanism: "Hackathon sponsorship fees" },
-    { source: "Training data licensing", mechanism: "Negotiated access to artifact usage data" },
+function EarnSlide() {
+  const rewards = [
+    {
+      icon: "🏆",
+      label: "Performance grants",
+      desc: "Top artifacts by verified usage and peer reviews earn quarterly grants. Rewards professors who put in the work to share something good.",
+    },
+    {
+      icon: "🎯",
+      label: "Hackathon prizes",
+      desc: "Sponsors run challenge tracks on the platform. Professors build artifacts around a specific tool or theme and compete for prize money.",
+    },
+    {
+      icon: "🎲",
+      label: "Random usage draw",
+      desc: "Every verified use of an artifact is one entry. A professor in Lagos has the same shot as one at MIT.",
+      highlight: true,
+    },
   ]
 
   return (
     <Shell>
       <div className="w-full max-w-5xl space-y-8">
         <div>
-          <SlideLabel>Business Model</SlideLabel>
-          <SlideHeading>The Hackathon Layer</SlideHeading>
-          <p className="text-muted mt-2 text-base max-w-2xl leading-relaxed">
-            Sponsored hackathons where teachers and developers compete to build artifacts around specific challenges — solving cold-start supply while generating revenue.
+          <SlideLabel>How Professors Earn</SlideLabel>
+          <SlideHeading>Built differently.</SlideHeading>
+          <p className="text-base text-ink-soft mt-2">
+            Most reward systems pay the people who are already winning. We don&apos;t.
           </p>
         </div>
-        <div className="grid grid-cols-5 gap-8 items-start">
-          <div className="col-span-3 grid grid-cols-3 gap-4">
-            {parties.map((p) => (
-              <Card key={p.label} className="space-y-3">
-                <div className="text-2xl">{p.icon}</div>
-                <p className="font-semibold text-ink text-sm">{p.label}</p>
-                <p className="text-xs text-muted leading-relaxed">{p.desc}</p>
-              </Card>
-            ))}
-          </div>
-          <div className="col-span-2 space-y-3">
-            <p className="text-xs font-bold uppercase tracking-widest text-muted mb-1">Funding sources</p>
-            {funding.map((f) => (
-              <div
-                key={f.source}
-                className="bg-forest-pale rounded-xl border border-forest/10 px-4 py-3.5"
-              >
-                <p className="text-sm font-semibold text-forest">{f.source}</p>
-                <p className="text-xs text-muted mt-0.5">{f.mechanism}</p>
-              </div>
-            ))}
-          </div>
+
+        <div className="grid grid-cols-3 gap-6">
+          {rewards.map((r) => (
+            <Card
+              key={r.label}
+              className={`space-y-4 ${r.highlight ? "border-amber/40 bg-amber/5" : ""}`}
+            >
+              <span className="text-3xl">{r.icon}</span>
+              <h3 className={`font-semibold text-lg ${r.highlight ? "text-amber-dark" : "text-ink"}`}>{r.label}</h3>
+              <p className="text-sm text-muted leading-relaxed">{r.desc}</p>
+              {r.highlight && (
+                <p className="text-xs font-semibold text-amber-dark">The equity mechanism.</p>
+              )}
+            </Card>
+          ))}
+        </div>
+
+        <div className="bg-forest-pale rounded-xl border border-forest/10 px-5 py-4 space-y-1">
+          <p className="text-xs font-bold uppercase tracking-widest text-forest">How we prevent gaming</p>
+          <p className="text-sm text-ink-soft leading-relaxed">
+            Institution authentication + 2FA before any draw access. Suspicious submissions from an institution revoke access for the whole institution — giving universities a real reason to enforce integrity.
+          </p>
         </div>
       </div>
     </Shell>
   )
 }
 
-// ── Slide 8: Roadmap + Why We Win ────────────────────────────────────────────
+// ── Slide 7: How We're Funded ─────────────────────────────────────────────────
+
+function FundingSlide() {
+  const streams = [
+    {
+      icon: "🎓",
+      source: "Education nonprofit grants",
+      desc: "Pay into the classroom draw pool. Winnings go directly to the professor's institution.",
+    },
+    {
+      icon: "🤖",
+      source: "AI company sponsorships",
+      desc: "Fund the hackathon prize tracks. Sponsors get professors building real use cases with their tools. We get a high-quality content pipeline.",
+    },
+    {
+      icon: "📊",
+      source: "Training data licensing (opt-in)",
+      desc: "Professors who choose to share artifact usage data with AI companies get a bonus on their performance grants. Opt-in only — better data, no backlash.",
+    },
+  ]
+
+  return (
+    <Shell>
+      <div className="w-full max-w-4xl space-y-8">
+        <div>
+          <SlideLabel>Funding Model</SlideLabel>
+          <SlideHeading>How We&apos;re Funded</SlideHeading>
+        </div>
+
+        <div className="space-y-4">
+          {streams.map((s) => (
+            <div
+              key={s.source}
+              className="flex items-start gap-5 bg-white rounded-2xl border border-border px-6 py-5"
+            >
+              <span className="text-3xl shrink-0 mt-0.5">{s.icon}</span>
+              <div className="space-y-1">
+                <p className="font-semibold text-ink">{s.source}</p>
+                <p className="text-sm text-muted leading-relaxed">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Shell>
+  )
+}
+
+// ── Slide 8: Roadmap ──────────────────────────────────────────────────────────
 
 function RoadmapSlide() {
   const phases = [
     {
       label: "Phase 1",
-      name: "Pilot",
-      items: ["Partner with W&M faculty to seed the library", "Run first internal hackathon", "Validate the reward model"],
+      name: "Seeding",
+      desc: "Internal hackathon at partner institutions to build the initial base of content and users. Universities advance their AI curriculum collaboratively.",
     },
     {
       label: "Phase 2",
       name: "Expand",
-      items: ["Bring in AI company sponsors", "Run first public hackathon", "Boosted draws to drive early adoption"],
+      desc: "First external sponsor, first public hackathon, platform open to other universities. Boosted draw rounds drive early adoption.",
     },
     {
       label: "Phase 3",
       name: "Scale",
-      items: ["Open to K–12 and international", "Developing-country partnerships", "AI-powered recommendations"],
+      desc: "Partner with larger organizations — ministries of education. AI-powered recommendations surface the right artifact for your course without searching.",
     },
-  ]
-  const criteria = [
-    { label: "Impact", body: "Addresses equity gaps in AI education at global scale" },
-    { label: "Feasibility", body: "Proven model; pilot starts at W&M with low capital" },
-    { label: "Creativity", body: "Randomized grant draw + hackathon-as-pipeline are both novel" },
-    { label: "Insight", body: "Grounded in real teacher constraints: time, incentives, access" },
   ]
 
   return (
     <Shell>
-      <div className="w-full max-w-5xl space-y-8">
+      <div className="w-full max-w-4xl space-y-10">
         <div>
           <SlideLabel>Execution</SlideLabel>
-          <SlideHeading>Roadmap & why we win</SlideHeading>
+          <SlideHeading>Roadmap</SlideHeading>
         </div>
-        <div className="grid grid-cols-5 gap-8">
-          <div className="col-span-3 grid grid-cols-3 gap-4">
-            {phases.map((phase) => (
-              <Card key={phase.name} className="space-y-3">
+
+        <div className="grid grid-cols-3 gap-6">
+          {phases.map((phase, i) => (
+            <div key={phase.name} className="relative">
+              {i < phases.length - 1 && (
+                <div className="absolute top-6 left-full w-6 flex items-center justify-center z-10">
+                  <span className="text-muted text-lg">→</span>
+                </div>
+              )}
+              <Card className="space-y-4 h-full">
                 <div>
                   <span className="text-xs font-bold uppercase tracking-widest text-amber">{phase.label}</span>
-                  <p className="font-display font-bold text-ink text-xl mt-0.5">{phase.name}</p>
+                  <p className="font-display font-bold text-ink text-2xl mt-0.5">{phase.name}</p>
                 </div>
-                <ul className="space-y-1.5">
-                  {phase.items.map((item) => (
-                    <li key={item} className="text-xs text-muted flex gap-2">
-                      <span className="text-forest shrink-0">·</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-sm text-muted leading-relaxed">{phase.desc}</p>
               </Card>
-            ))}
-          </div>
-          <div className="col-span-2 space-y-3">
-            <p className="text-xs font-bold uppercase tracking-widest text-muted">Judging criteria</p>
-            {criteria.map((c) => (
-              <div
-                key={c.label}
-                className="bg-forest-pale rounded-xl border border-forest/10 px-4 py-3"
-              >
-                <p className="text-sm font-bold text-forest">{c.label}</p>
-                <p className="text-xs text-muted mt-0.5 leading-relaxed">{c.body}</p>
-              </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-forest-pale rounded-xl border border-forest/10 px-5 py-4">
+          <p className="text-sm text-ink-soft">
+            Pilot starts at <span className="font-semibold text-forest">William & Mary</span> — low capital, validated model, direct alignment with the W&M Entrepreneurship Hub.
+          </p>
         </div>
       </div>
     </Shell>
@@ -442,17 +479,17 @@ function RoadmapSlide() {
 // ── Slideshow shell ───────────────────────────────────────────────────────────
 
 const SLIDES = [
-  TitleSlide,
+  TeamSlide,
   ProblemSlide,
   SolutionSlide,
-  HowItWorksSlide,
-  RewardSlide,
+  ArtifactSlide,
   DemoSlide,
-  HackathonSlide,
+  EarnSlide,
+  FundingSlide,
   RoadmapSlide,
 ]
 
-const TITLES = ["Title", "Problem", "Solution", "How It Works", "Reward System", "Demo", "Hackathon Layer", "Roadmap"]
+const TITLES = ["Team", "Problem", "Solution", "Artifact", "Demo", "Earning", "Funding", "Roadmap"]
 
 export default function SlidesPage() {
   const [current, setCurrent] = useState(0)
@@ -477,22 +514,18 @@ export default function SlidesPage() {
       className="relative w-full h-screen overflow-hidden bg-surface"
       style={{ fontFamily: "var(--font-dm-sans)" }}
     >
-      {/* Amber top stripe — matches landing page */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-amber z-10" />
 
-      {/* Slide */}
       <div key={current} className="w-full h-full" style={{ animation: "fadeIn 0.2s ease" }}>
         <Slide />
       </div>
 
       {/* Bottom nav */}
       <div className="absolute bottom-0 left-0 right-0 px-10 py-4 flex items-center justify-between border-t border-border bg-surface/90 backdrop-blur-sm z-10">
-        {/* Slide title */}
         <span className="text-xs text-muted font-medium tracking-wide w-32">
           {TITLES[current]}
         </span>
 
-        {/* Dot nav */}
         <div className="flex items-center gap-1.5">
           {SLIDES.map((_, i) => (
             <button
@@ -509,7 +542,6 @@ export default function SlidesPage() {
           ))}
         </div>
 
-        {/* Counter + arrows */}
         <div className="flex items-center gap-3 w-32 justify-end">
           <span className="text-xs text-muted tabular-nums">{current + 1} / {total}</span>
           <button
