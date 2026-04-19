@@ -127,62 +127,105 @@ function TeamSlide() {
 
 // ── Slide 2: Problem ──────────────────────────────────────────────────────────
 
-function ProblemSlide() {
+function ProblemSlide({ step = 0 }: { step?: number }) {
   const problems = [
     {
       num: "01",
       title: "No shared space.",
-      body: "Good AI-powered course materials exist, but they stay stuck in individual classrooms. There's no trusted place to find what's actually working.",
+      body: "AI materials stay trapped in individual classrooms. No trusted place to find what's working.",
     },
     {
       num: "02",
       title: "No reason to share.",
-      body: "Professors are stretched thin. Without real incentives — money or recognition — the effort of packaging and publishing their work just doesn't happen.",
+      body: "Without real incentives, packaging and publishing great work just doesn't happen.",
     },
     {
       num: "03",
-      title: "The gap keeps growing.",
-      body: "Well-resourced universities move fast on AI. Everyone else falls further behind. The professors who could benefit most are the ones with the least support.",
+      title: "The gap widens.",
+      body: "Well-resourced universities move fast on AI. Everyone else falls further behind.",
     },
   ]
 
   return (
-    <Shell>
-      <div className="w-full max-w-5xl space-y-8">
-        <div>
-          <SlideLabel>The Problem</SlideLabel>
-          <SlideHeading>Built for professors —<br />especially the under-resourced.</SlideHeading>
+    <div className="w-full h-full flex bg-surface pb-14">
+      {/* LEFT — Stats */}
+      <div className="flex flex-col items-center justify-center px-14 pt-14 pb-6 text-center" style={{ width: "46%" }}>
+        <div className="flex items-center gap-3 text-[11px] font-bold tracking-[0.25em] uppercase text-amber animate-fade-up">
+          <span className="w-10 h-px bg-amber" />
+          <span>The Problem</span>
+          <span className="w-10 h-px bg-amber" />
         </div>
 
-        {/* Anchor stat */}
-        <div className="flex items-center gap-6 bg-amber/8 border border-amber/20 rounded-xl px-6 py-4">
-          <div className="text-center shrink-0">
-            <p className="font-display font-bold text-4xl text-amber-dark">47%</p>
-            <p className="text-xs text-muted mt-0.5">high-income countries</p>
+        <h2 className="font-display font-bold text-5xl text-ink leading-[0.95] tracking-[-0.02em] mt-7 animate-fade-up delay-1">
+          The AI gap is <br /> widening.
+        </h2>
+
+        {/* Horizontal stats */}
+        <div className="flex items-center gap-6 mt-10">
+          <div className="text-center animate-fade-up delay-2">
+            <p className="font-display font-bold leading-none tracking-[-0.04em] text-amber-dark" style={{ fontSize: "5.5rem" }}>
+              47%
+            </p>
+            <p className="text-xs text-muted mt-2 leading-snug">high-income<br />institutions</p>
           </div>
-          <div className="h-10 w-px bg-amber/20 shrink-0" />
-          <div className="text-center shrink-0">
-            <p className="font-display font-bold text-4xl text-ink">8%</p>
-            <p className="text-xs text-muted mt-0.5">low-income countries</p>
+
+          <div className="animate-fade-up delay-2 pb-6">
+            <p className="font-display italic font-bold text-2xl text-border">vs.</p>
           </div>
-          <div className="h-10 w-px bg-amber/20 shrink-0" />
-          <p className="text-sm text-ink-soft leading-relaxed">
-            of academic institutions have implemented AI tools — a gap that keeps widening.{" "}
-            <span className="text-xs text-muted">(UNESCO-aligned review, ChemRxiv, 2025)</span>
-          </p>
+
+          <div className="text-center animate-fade-up delay-3">
+            <p className="font-display font-bold leading-none tracking-[-0.04em] text-ink/25" style={{ fontSize: "5.5rem" }}>
+              8%
+            </p>
+            <p className="text-xs text-muted mt-2 leading-snug">low-income<br />institutions</p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
-          {problems.map((p) => (
-            <Card key={p.num} className="space-y-3">
-              <span className="font-display text-4xl font-bold text-amber/60">{p.num}</span>
-              <h3 className="font-semibold text-lg text-ink">{p.title}</h3>
-              <p className="text-sm text-muted leading-relaxed">{p.body}</p>
-            </Card>
-          ))}
+        <p className="text-[10px] text-muted/50 mt-5 animate-fade-up delay-3">
+          implement AI tools <br /> (UNESCO-aligned review, ChemRxiv, 2025)
+        </p>
+      </div>
+
+      {/* Gradient spine */}
+      <div
+        className="w-px shrink-0 animate-grow-y delay-1"
+        style={{
+          background:
+            "linear-gradient(to bottom, var(--border) 0%, var(--amber) 32%, var(--amber) 68%, var(--border) 100%)",
+        }}
+      />
+
+      {/* RIGHT — Problems revealed per step */}
+      <div className="flex-1 flex flex-col px-16 pt-14 pb-6">
+        <div className="flex-1 flex flex-col justify-center">
+          <div className="divide-y divide-border/70">
+            {problems.map((p, i) => (
+              <div
+                key={p.num}
+                className="flex items-start gap-6 py-8 first:pt-0 last:pb-0"
+                style={{
+                  opacity: step > i ? 1 : 0,
+                  transform: step > i ? "translateY(0)" : "translateY(10px)",
+                  transition: "opacity 0.45s ease, transform 0.45s ease",
+                  pointerEvents: step > i ? "auto" : "none",
+                }}
+              >
+                <span
+                  className="font-display font-bold text-amber/35 leading-none shrink-0"
+                  style={{ fontSize: "3.5rem" }}
+                >
+                  {p.num}
+                </span>
+                <div className="flex-1 pt-1">
+                  <p className="font-display font-bold text-xl text-ink leading-tight">{p.title}</p>
+                  <p className="text-sm text-muted leading-relaxed mt-1.5">{p.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </Shell>
+    </div>
   )
 }
 
@@ -191,57 +234,70 @@ function ProblemSlide() {
 function SolutionSlide() {
   const pillars = [
     {
-      icon: "📚",
+      num: "01",
       label: "Library",
-      desc: "Real artifacts, organized by subject, course level, and tool — verified by the professors who built them.",
+      desc: "Real artifacts organized by subject, level, and tool. Verified by the professors who built them.",
     },
     {
-      icon: "💬",
-      label: "Social",
-      desc: "Discussion under every artifact. Peers helping each other adapt things to their context.",
-    },
-    {
-      icon: "💰",
+      num: "02",
       label: "Incentives",
-      desc: "Grants for top contributors, hackathon prizes from sponsors, and a randomized draw so anyone anywhere can earn.",
+      desc: "Grants, hackathon prizes, and a randomized draw so any professor, anywhere, can earn.",
+    },
+    {
+      num: "03",
+      label: "Community",
+      desc: "Discussion for every artifact. Peers helping each other adapt and deploy.",
     },
   ]
 
   return (
-    <Shell>
-      <div className="w-full max-w-5xl space-y-8">
-        <div>
-          <SlideLabel>The Solution</SlideLabel>
-          <SlideHeading>
-            A free, peer-run library<br />
-            <span className="text-forest">with a reward system.</span>
-          </SlideHeading>
+    <div className="w-full h-full flex flex-col items-center justify-center bg-surface px-20 pt-0 pb-32 gap-12">
+      {/* Header — centered */}
+      <div className="text-center w-full mb-4">
+        <div className="flex items-center justify-center gap-3 text-[11px] font-bold tracking-[0.25em] uppercase text-forest animate-fade-up mb-5">
+          <span className="w-8 h-px bg-forest" />
+          <span>The Solution</span>
+          <span className="w-8 h-px bg-forest" />
         </div>
-
-        <div className="grid grid-cols-3 gap-6">
-          {pillars.map((p) => (
-            <Card key={p.label} className="space-y-4">
-              <span className="text-3xl">{p.icon}</span>
-              <h3 className="font-semibold text-ink text-lg">{p.label}</h3>
-              <p className="text-sm text-muted leading-relaxed">{p.desc}</p>
-            </Card>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-surface-alt rounded-xl border border-border px-5 py-4">
-            <p className="text-xs font-bold uppercase tracking-widest text-muted mb-2">Selling platforms (e.g. TPT)</p>
-            <p className="text-sm text-ink-soft">Paywalled. No real community. Not designed for AI-era teaching.</p>
-          </div>
-          <div className="bg-surface-alt rounded-xl border border-border px-5 py-4">
-            <p className="text-xs font-bold uppercase tracking-widest text-muted mb-2">Teacher networks</p>
-            <p className="text-sm text-ink-soft">Great conversation. Nothing you can actually run in class next week.</p>
-          </div>
-        </div>
-
-        <p className="text-sm font-semibold text-forest">Artifera has both.</p>
+        <h2 className="font-display font-bold text-[5.25rem] text-ink leading-[0.88] tracking-[-0.035em] animate-fade-up delay-1">
+          A library.<br />
+          <span className="text-forest">With a reward system.</span>
+        </h2>
       </div>
-    </Shell>
+
+      {/* 3 pillars horizontal */}
+      <div className="flex border-t border-b border-border w-full">
+        {pillars.map((p, i) => (
+          <div
+            key={p.num}
+            className={`flex-1 px-10 py-8 animate-fade-up ${i < pillars.length - 1 ? "border-r border-border" : ""}`}
+            style={{ animationDelay: `${0.3 + i * 0.13}s` }}
+          >
+            <span className="font-display font-bold text-forest/20 leading-none block mb-4" style={{ fontSize: "3rem" }}>
+              {p.num}
+            </span>
+            <p className="font-display font-bold text-2xl text-ink mb-2">{p.label}</p>
+            <p className="text-sm text-muted leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Contrast strip */}
+      <div className="flex items-center gap-3 w-full animate-fade-up delay-3">
+        <div className="flex-1 flex items-center gap-2.5 bg-surface-alt rounded-xl border border-border px-4 py-3">
+          <span className="text-muted/35 font-bold text-sm shrink-0">✕</span>
+          <p className="text-sm text-ink-soft">
+            Commercial platforms prevent access to those who need it most
+          </p>
+        </div>
+        <div className="flex-1 flex items-center gap-2.5 bg-surface-alt rounded-xl border border-border px-4 py-3">
+          <span className="text-muted/35 font-bold text-sm shrink-0">✕</span>
+          <p className="text-sm text-ink-soft">
+            Teachers networks provide conversation but not concrete resources or incentives
+          </p>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -249,7 +305,7 @@ function SolutionSlide() {
 
 function ArtifactSlide() {
   const types = [
-    { icon: "📓", label: "Curated NotebookLMs", desc: "High-quality sources and guided prompts built around a specific topic." },
+    { icon: "📓", label: "Curated NotebookLMs", desc: "High-quality sources and guided prompts." },
     { icon: "📋", label: "Course modules", desc: "Activity, rubric, and worked examples already written." },
     { icon: "🛠️", label: "3rd party tools", desc: "Verified by professors to be effective in a real course setting." },
     { icon: "🔗", label: "Custom tools", desc: "Vibe-coded and hosted by Artifera, ready to deploy." },
@@ -258,32 +314,33 @@ function ArtifactSlide() {
   return (
     <Shell>
       <div className="w-full max-w-5xl space-y-8">
-        <div>
+        <div className="animate-fade-up">
           <SlideLabel>What Is an Artifact?</SlideLabel>
           <SlideHeading>Something concrete.</SlideHeading>
-          <p className="text-lg text-ink-soft mt-3">
-            Not &quot;how to use AI in your classroom&quot; advice. An actual thing you can open on Monday and use.
+          <p className="text-base text-ink-soft mt-3">
+            Not &quot;how to use AI&quot; advice. An actual thing you can open on Monday and use.
           </p>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          {types.map((t) => (
+          {types.map((t, i) => (
             <div
               key={t.label}
-              className="flex items-start gap-4 bg-forest-pale rounded-xl px-5 py-4 border border-forest/10"
+              className="flex items-start gap-4 bg-forest-pale rounded-xl px-5 py-5 border border-forest/10 animate-fade-up"
+              style={{ animationDelay: `${0.2 + i * 0.1}s` }}
             >
               <span className="text-2xl shrink-0 mt-0.5">{t.icon}</span>
               <div>
-                <p className="font-semibold text-ink text-sm">{t.label}</p>
-                <p className="text-xs text-muted leading-relaxed mt-0.5">{t.desc}</p>
+                <p className="font-display font-bold text-ink text-base leading-tight">{t.label}</p>
+                <p className="text-sm text-muted leading-relaxed mt-1">{t.desc}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="flex items-center gap-6 text-sm text-muted">
+        <div className="flex items-center gap-6 animate-fade-up delay-3">
           {["Tagged by subject & course level", "Peer-reviewed usage count", "Clear way to get started"].map((tag) => (
-            <span key={tag} className="flex items-center gap-1.5">
+            <span key={tag} className="flex items-center gap-1.5 text-sm text-muted">
               <span className="text-forest font-bold">✓</span>
               {tag}
             </span>
@@ -491,12 +548,28 @@ const SLIDES = [
 
 const TITLES = ["Team", "Problem", "Solution", "Artifact", "Demo", "Earning", "Funding", "Roadmap"]
 
+// Number of click-through sub-steps per slide (0 = no sub-steps)
+const SLIDE_STEPS = [0, 3, 0, 0, 0, 0, 0, 0]
+
 export default function SlidesPage() {
   const [current, setCurrent] = useState(0)
+  const [step, setStep] = useState(0)
   const total = SLIDES.length
 
-  const prev = useCallback(() => setCurrent(s => Math.max(0, s - 1)), [])
-  const next = useCallback(() => setCurrent(s => Math.min(total - 1, s + 1)), [])
+  const prev = useCallback(() => {
+    setCurrent(s => Math.max(0, s - 1))
+    setStep(0)
+  }, [])
+
+  const next = useCallback(() => {
+    const maxStep = SLIDE_STEPS[current]
+    if (step < maxStep) {
+      setStep(s => s + 1)
+    } else {
+      setCurrent(s => Math.min(total - 1, s + 1))
+      setStep(0)
+    }
+  }, [current, step, total])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -507,7 +580,7 @@ export default function SlidesPage() {
     return () => window.removeEventListener("keydown", onKey)
   }, [prev, next])
 
-  const Slide = SLIDES[current]
+  const Slide = SLIDES[current] as React.ComponentType<{ step?: number }>
 
   return (
     <div
@@ -517,7 +590,7 @@ export default function SlidesPage() {
       <div className="absolute top-0 left-0 right-0 h-1 bg-amber z-10" />
 
       <div key={current} className="w-full h-full" style={{ animation: "fadeIn 0.2s ease" }}>
-        <Slide />
+        <Slide step={step} />
       </div>
 
       {/* Bottom nav */}
@@ -530,7 +603,7 @@ export default function SlidesPage() {
           {SLIDES.map((_, i) => (
             <button
               key={i}
-              onClick={() => setCurrent(i)}
+              onClick={() => { setCurrent(i); setStep(0) }}
               className="rounded-full transition-all duration-200"
               style={{
                 width: i === current ? "1.5rem" : "0.375rem",
@@ -553,7 +626,7 @@ export default function SlidesPage() {
           </button>
           <button
             onClick={next}
-            disabled={current === total - 1}
+            disabled={current === total - 1 && step >= SLIDE_STEPS[current]}
             className="w-7 h-7 rounded-full bg-forest text-white flex items-center justify-center text-sm transition-colors hover:bg-forest-mid disabled:opacity-30 disabled:cursor-not-allowed"
           >
             →
